@@ -52,6 +52,4 @@ function assignSerialNumbers(jsonData: string): { original: string; updated: str
   };
 }
 
-// Example usage
-
 export default assignSerialNumbers;
