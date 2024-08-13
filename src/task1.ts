@@ -7,10 +7,9 @@ type InternetHubData = {
   Internet_hubs: InternetHub[];
 };
 
-function assignSerialNumbers(jsonData: string): { original: string; updated: string } {
-  // Convert JSON data to object
-  const data: InternetHubData = JSON.parse(jsonData);
-
+function assignSerialNumbers(data: InternetHubData): { original: InternetHubData; updated: InternetHubData } {
+  // Prevent changes to oringinal data
+  const originalString = JSON.stringify(data);
   // Validate JSON structure
   const requiredKeys = ["id", "serial_number"];
   for (const hub of data.Internet_hubs) {
@@ -47,8 +46,8 @@ function assignSerialNumbers(jsonData: string): { original: string; updated: str
 
   // Return both original and updated JSON objects
   return {
-    original: jsonData,
-    updated: JSON.stringify(updatedData),
+    original: JSON.parse(originalString),
+    updated: updatedData,
   };
 }
 
